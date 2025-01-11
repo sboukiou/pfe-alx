@@ -98,63 +98,48 @@ createApp({
         graph()
     }
     // add function
-    // function additem(){
-    //     ++id.value
-    //     const existinId = liste.value.filter((oneItem) => oneItem.id === item.value.id)
-    //     if(existinId.length != item.value.id){
-    //         if (item.value.description === '') {
-    //             Swal.fire({
-    //                 title: 'Warning',
-    //                 text: 'There is no description please try again !',
-    //                 icon: 'warning',
-    //             })
-    //             id.value = 1
-    //         }
-    //         // if (statu.value == null) {
-    //         //     Swal.fire({
-    //         //         title: 'Warning',
-    //         //         text: 'The statu is empty please try again !',
-    //         //         icon: 'warning',
-    //         //     })
-    //         //     emptyItem()
-    //         // }
-    //         else{
-    //              liste.value.push(item.value)
-    //             // histortyList.value.push(item.value)
-    //             updateCalendar()
-    //             Swal.fire({
-    //                 title: 'Added',
-    //                 text: 'Task Added with success',
-    //                 icon: 'success',
-    //             })
-    //         }
-    //     }
-    //     else{
-    //     emptyItem()
-    //     Swal.fire({
-    //         title: 'Error',
-    //         text: 'Please change the ID of task',
-    //         icon: 'error',
-    //     })
-    //     }
-    //     emptyItem()
-    //     graph()
-    // }
-    const additem = async () => {
-        try {
-          const newTask = {
-            description: item.value.description,
-            statu: item.value.statu,
-            date: item.value.date,
-          };
-          await axios.post(API_URL, newTask);
-          fetchTasks(); // Re-fetch tasks to update the list
-          resetItem();
-          alert('Task added successfully');
-        } catch (error) {
-          console.error('Error adding task:', error);
+    function additem(){
+        ++id.value
+        const existinId = liste.value.filter((oneItem) => oneItem.id === item.value.id)
+        if(existinId.length != item.value.id){
+            if (item.value.description === '') {
+                Swal.fire({
+                    title: 'Warning',
+                    text: 'There is no description please try again !',
+                    icon: 'warning',
+                })
+                id.value = 1
+            }
+            // if (statu.value == null) {
+            //     Swal.fire({
+            //         title: 'Warning',
+            //         text: 'The statu is empty please try again !',
+            //         icon: 'warning',
+            //     })
+            //     emptyItem()
+            // }
+            else{
+                 liste.value.push(item.value)
+                // histortyList.value.push(item.value)
+                updateCalendar()
+                Swal.fire({
+                    title: 'Added',
+                    text: 'Task Added with success',
+                    icon: 'success',
+                })
+            }
         }
-      };
+        else{
+        emptyItem()
+        Swal.fire({
+            title: 'Error',
+            text: 'Please change the ID of task',
+            icon: 'error',
+        })
+        }
+        emptyItem()
+        graph()
+    }
     function emptyItem(){
         item.value = {'id':id.value,'description':'','status': '','date':''}
     }
@@ -175,19 +160,10 @@ createApp({
     function preDelete(id) {
         item.value = id
     }
-    // function deleteItem(){
-    //     liste.value = liste.value.filter((row)=> row.id != item.value) 
-    //     updateCalendar() 
-    // }
-    const deleteItem = async () => {
-        try {
-          await axios.delete(`${API_URL}${item.value.id}`);
-          fetchTasks(); // Re-fetch tasks to update the list
-          alert('Task deleted successfully');
-        } catch (error) {
-          console.error('Error deleting task:', error);
-        }
-      };
+    function deleteItem(){
+        liste.value = liste.value.filter((row)=> row.id != item.value) 
+        updateCalendar() 
+    }
     function editTodo(edit) {
         item.value = edit
         updateCalendar()
