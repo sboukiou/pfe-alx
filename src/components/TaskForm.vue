@@ -1,14 +1,14 @@
 <template>
     <form @submit.prevent="handleSubmit">
-        <input type="text" placeholder="add new tasks ..." v-model="newTask">
-        <button type="submit"><i class="material-icons text-white">add</i></button>
+        <input type="text" placeholder="I need to..." v-model="newTask">
+        <button type="submit"><i class="material-icons">add</i></button>
     </form>
 </template>
 
 <script>
 import { useTaskStore } from "../stores/TaskStore";
 import { ref } from "vue";
-import axios from "axios";
+import axios from "axios";  // Import axios
 
 export default {
     setup() {

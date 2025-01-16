@@ -29,6 +29,7 @@ sequelize.sync().then(() => {
 
 app.get('/', (req, res) => {
     res.send('Welcome to the homepage!');
+    res.send('t!');
 });
 
 // Get all tasks
@@ -38,11 +39,10 @@ app.get('/tasks', async (req, res) => {
 });
 
 // Get a task by ID
-app.delete('/tasks/:id', async (req, res) => {
+app.get('/tasks/:id', async (req, res) => {
     const task = await Task.findByPk(req.params.id);
     if (task) {
-        await task.destroy();  // Delete the task from the database
-        res.status(204).send();  // Respond with no content on successful deletion
+        res.json(task);
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
@@ -50,15 +50,17 @@ app.delete('/tasks/:id', async (req, res) => {
 
 // Create a new task
 app.post('/tasks', async (req, res) => {
-    const { title, isFav, date } = req.body;
+    const { title, isFav, date } = req.body; // title -> description, isFav -> statu
     try {
-        // Ensure you're using 'title' as the field in the database
         const newTask = await Task.create({
-            title: title,    // Use 'title' here instead of 'description'
-            isFav: isFav,    // Optional: include 'isFav' if you want to track favorites
-            date: date,      // Ensure you're sending a valid date from the frontend
+            description: title, // Mapping frontend 'title' to 'description'
+            statu: isFav ? 1 : 0, // Mapping 'isFav' to 'statu', 1 for true, 0 for false
+            date
         });
-        res.status(201).json(newTask);  // Send the full task object (including 'id') as response
+
+        // Fetch all tasks after creating the new one
+        const tasks = await Task.findAll();
+        res.status(201).json(tasks);  // Return the updated list of tasks
     } catch (err) {
         res.status(400).json({ message: 'Error creating task', error: err });
     }
@@ -66,31 +68,25 @@ app.post('/tasks', async (req, res) => {
 
 // Update a task
 app.put('/tasks/:id', async (req, res) => {
-    const { title, isFav, date } = req.body; // These fields should match your frontend model
+    const { title, isFav, date } = req.body; // title -> description, isFav -> statu
     const task = await Task.findByPk(req.params.id);
-
     if (task) {
-        // Update the task fields
-        task.title = title;  // Mapping 'title' from the frontend
-        task.isFav = isFav;  // Mapping 'isFav' (favorite) from the frontend
-        task.date = date;    // Update the date (if necessary)
-
-        await task.save();   // Save changes to the database
-
-        // Respond with the updated task
+        task.description = title; // Mapping 'title' to 'description'
+        task.statu = isFav ? 1 : 0; // Mapping 'isFav' to 'statu'
+        task.date = date;
+        await task.save();
         res.json(task);
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
 });
 
-
 // Delete a task
 app.delete('/tasks/:id', async (req, res) => {
     const task = await Task.findByPk(req.params.id);
     if (task) {
-        await task.destroy();
-        res.status(204).send();
+        await task.destroy();  // Delete the task from the database
+        res.status(204).send();  // Respond with no content on successful deletion
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
