@@ -1,7 +1,7 @@
 <template>
       <main>
     <header>
-      <img src="../public/img/logo.png" alt="pinia logo">
+      <img src="../../public/img/logo.png" alt="pinia logo">
       <h1>{{TaskStore.name}} Tasks</h1>
     </header>
     <!-- new task form -->
@@ -29,17 +29,14 @@
      </div>
   </main>
 </template>
-<script >
+<script setup>
 import TaskDetails from "../components/TaskDetails.vue";
 import TaskForm from "../components/TaskForm.vue";
 import { useTaskStore } from '../stores/TaskStore';
 import { ref } from "vue";
-  export default {
-    components: {TaskDetails, TaskForm},
-    setup (){
-      const TaskStore = useTaskStore()
-      const filter = ref('all')
-      return { TaskStore,filter }
-      }
-  }
+
+// Use the TaskStore Pinia store
+const TaskStore = useTaskStore();
+const filter = ref('all');
+
 </script>
