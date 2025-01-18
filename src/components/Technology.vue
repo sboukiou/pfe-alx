@@ -6,32 +6,59 @@
               <span class="text-dark">The Technology Behind the Magic</span>
             </h3>
           </div>
-            
+
             <div class="row p-2">
-                <div class="col-4">
-                    <div class=" feature-card">
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="feature-card">
                         <div class="card-body">
                             <img src="../../public/img/logos/HTML5.png" class="img" alt="...">
                         </div>
-                      </div>
+                    </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-12 col-md-4 mb-3">
                     <div class="feature-card">
                         <div class="card-body">
                             <img src="../../public/img/logos/CSS3.png" class="img" alt="...">
                         </div>
-                      </div>
+                    </div>
                 </div>
 
-                <div class="col-4">
+                <div class="col-12 col-md-4 mb-3">
                     <div class="feature-card">
                         <div class="card-body">
                             <img src="../../public/img/logos/Vue.js.png" class="img" alt="...">
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row p-2">
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="feature-card">
+                        <div class="card-body">
+                            <img src="../../public/img/logos/HTML5.png" class="img" alt="...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="feature-card">
+                        <div class="card-body">
+                            <img src="../../public/img/logos/CSS3.png" class="img" alt="...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 mb-3">
+                    <div class="feature-card">
+                        <div class="card-body">
+                            <img src="../../public/img/logos/Vue.js.png" class="img" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
 
          </div>
 </template>
