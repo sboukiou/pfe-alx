@@ -3,7 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 // Initialize Sequelize with SQLite
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: 'tasks.db', // The database file
+    storage: 'tasks.db',
 });
 
 // Define Task model

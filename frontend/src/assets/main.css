@@ -192,7 +192,7 @@ text-decoration-color: #386BC0;
 text-decoration-style: solid ;
 }
 
-/* Custom CSS */
+
 /* Feature Card */
 .feature-card {
 background: #fff;
@@ -200,7 +200,7 @@ border-radius: 15px;
 padding: 30px 20px;
 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 transition: transform 0.3s, box-shadow 0.3s;
-height: 100%; /* Ensures equal height for all cards */
+height: 100%;
 }
 
 .feature-card:hover {

@@ -18,7 +18,7 @@
 <script>
 import { useTaskStore } from "../stores/TaskStore";
 import { ref } from "vue";
-import axios from "axios";  // Import axios
+import axios from "axios";
 
 export default {
     setup() {
@@ -32,14 +32,14 @@ export default {
                     const response = await axios.post("http://localhost:3000/tasks", {
                         title: newTask.value,
                         isFav: false,
-                        date: new Date().toISOString()  // Example date, adjust according to your schema
+                        date: new Date().toISOString()
                     });
 
                     // If the task is successfully added, update your store
                     taskStore.addTask({
                         title: newTask.value,
                         isFav: false,
-                        id: response.data.id,  // Use the ID from the server's response
+                        id: response.data.id,
                     });
 
                     // Fetch all tasks again to ensure the task list is up-to-date
@@ -57,7 +57,7 @@ export default {
         };
         const deleteAllTasks = async () => {
             try {
-                await taskStore.deleteAllTasks();  // Call deleteAllTasks from store
+                await taskStore.deleteAllTasks();
             } catch (error) {
                 console.error("Error deleting tasks: ", error);
             }

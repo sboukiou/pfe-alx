@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { sequelize, Task } = require('./db'); // Import the database setup
-
+const { sequelize, Task } = require('./db');
 const app = express();
 const PORT = 3000;
 const helmet = require('helmet');
@@ -50,17 +49,16 @@ app.get('/tasks/:id', async (req, res) => {
 
 // Create a new task
 app.post('/tasks', async (req, res) => {
-    const { title, isFav, date } = req.body; // title -> description, isFav -> statu
+    const { title, isFav, date } = req.body;
     try {
         const newTask = await Task.create({
-            description: title, // Mapping frontend 'title' to 'description'
-            statu: isFav ? 1 : 0, // Mapping 'isFav' to 'statu', 1 for true, 0 for false
+            description: title,
+            statu: isFav ? 1 : 0,
             date
         });
 
-        // Fetch all tasks after creating the new one
         const tasks = await Task.findAll();
-        res.status(201).json(tasks);  // Return the updated list of tasks
+        res.status(201).json(tasks);
     } catch (err) {
         res.status(400).json({ message: 'Error creating task', error: err });
     }
@@ -68,11 +66,11 @@ app.post('/tasks', async (req, res) => {
 
 // Update a task
 app.put('/tasks/:id', async (req, res) => {
-    const { title, isFav, date } = req.body; // title -> description, isFav -> statu
+    const { title, isFav, date } = req.body; 
     const task = await Task.findByPk(req.params.id);
     if (task) {
-        task.description = title; // Mapping 'title' to 'description'
-        task.statu = isFav ? 1 : 0; // Mapping 'isFav' to 'statu'
+        task.description = title;
+        task.statu = isFav ? 1 : 0;
         task.date = date;
         await task.save();
         res.json(task);
@@ -85,8 +83,8 @@ app.put('/tasks/:id', async (req, res) => {
 app.delete('/tasks/:id', async (req, res) => {
     const task = await Task.findByPk(req.params.id);
     if (task) {
-        await task.destroy();  // Delete the task from the database
-        res.status(204).send();  // Respond with no content on successful deletion
+        await task.destroy();
+        res.status(204).send();
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
@@ -94,8 +92,8 @@ app.delete('/tasks/:id', async (req, res) => {
 // Delete all tasks from tasks.db
 app.delete('/tasks', async (req, res) => {
     try {
-        const result = await Task.destroy({ where: {} });  // Deletes all tasks
-        res.status(204).send();  // Send no content if successful
+        const result = await Task.destroy({ where: {} });
+        res.status(204).send();
     } catch (error) {
         console.error("Error deleting all tasks:", error);
         res.status(500).json({ message: "Error deleting tasks" });

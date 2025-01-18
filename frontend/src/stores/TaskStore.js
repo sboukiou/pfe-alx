@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';  // Import axios to make API calls
+import axios from 'axios';
 
 export const useTaskStore = defineStore('TaskStore', {
     state: () => ({
@@ -32,7 +32,7 @@ export const useTaskStore = defineStore('TaskStore', {
         async addTask(task) {
           try {
             const response = await axios.post('http://localhost:3000/tasks', task);
-            this.tasks.push(response.data);  // Push the newly created task into the store
+            this.tasks.push(response.data);
           } catch (error) {
             console.error('Error adding task:', error);
           }
@@ -42,7 +42,7 @@ export const useTaskStore = defineStore('TaskStore', {
         async deleteTask(id) {
           try {
             await axios.delete(`http://localhost:3000/tasks/${id}`);
-            this.tasks = this.tasks.filter((task) => task.id !== id);  // Remove the task from store
+            this.tasks = this.tasks.filter((task) => task.id !== id);
           } catch (error) {
             console.error('Error deleting task:', error);
           }
@@ -52,7 +52,7 @@ export const useTaskStore = defineStore('TaskStore', {
         async toggleFav(id) {
           const task = this.tasks.find((task) => task.id === id);
           if (task) {
-            task.isFav = !task.isFav;  // Toggle favorite status
+            task.isFav = !task.isFav;
             try {
               await axios.put(`http://localhost:3000/tasks/${id}`, task);
             } catch (error) {
@@ -64,9 +64,9 @@ export const useTaskStore = defineStore('TaskStore', {
         // Delete all tasks from the store and backend
         async deleteAllTasks() {
           try {
-              const response = await axios.delete('http://localhost:3000/tasks'); // DELETE request to delete all tasks
+              const response = await axios.delete('http://localhost:3000/tasks');
               if (response.status === 204) {
-                  this.tasks = [];  // Clear the tasks from the store
+                  this.tasks = [];
                   console.log('All tasks deleted');
               }
           } catch (error) {
