@@ -38,7 +38,7 @@ export const useTaskStore = defineStore('TaskStore', {
           }
         },
     
-        // Optionally, implement actions for deleting or toggling favorite status
+        // Delete a specific task by id
         async deleteTask(id) {
           try {
             await axios.delete(`http://localhost:3000/tasks/${id}`);
@@ -48,6 +48,7 @@ export const useTaskStore = defineStore('TaskStore', {
           }
         },
     
+        // Toggle favorite status of a task
         async toggleFav(id) {
           const task = this.tasks.find((task) => task.id === id);
           if (task) {
@@ -59,5 +60,18 @@ export const useTaskStore = defineStore('TaskStore', {
             }
           }
         },
-      },
+    
+        // Delete all tasks from the store and backend
+        async deleteAllTasks() {
+          try {
+              const response = await axios.delete('http://localhost:3000/tasks'); // DELETE request to delete all tasks
+              if (response.status === 204) {
+                  this.tasks = [];  // Clear the tasks from the store
+                  console.log('All tasks deleted');
+              }
+          } catch (error) {
+              console.error("Error deleting all tasks:", error);
+          }
+      }      
+    }
 });

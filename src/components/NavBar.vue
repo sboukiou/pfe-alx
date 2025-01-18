@@ -9,11 +9,19 @@
 
             <!-- Try it Now Button -->
             <div class="ms-auto">
-                <router-link to="/tasks" class="btn btn-primary" type="button">Try it Now!!</router-link>
+                <router-link to="/tasks" @click="fetchTasks" class="btn btn-primary" type="button">Try it Now!!</router-link>
             </div>
         </div>
     </div>
 </nav>
 </template>
-<script>
+<script setup>
+import { useTaskStore } from '../stores/TaskStore';
+
+const taskStore = useTaskStore();
+
+// Call fetchTasks from the store when the button is clicked
+const fetchTasks = async () => {
+  await taskStore.fetchTasks();
+};
 </script>

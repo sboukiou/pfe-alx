@@ -1,7 +1,17 @@
 <template>
     <form @submit.prevent="handleSubmit">
         <input type="text" placeholder="I have to do..." v-model="newTask">
-        <button class="bg-primary" type="submit"><i class="material-icons text-white">add</i></button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary" type="submit" @click="add">
+                <i class="material-icons text-white">add</i>
+            </button>
+            <button class="btn btn-primary" type="submit" @click="fetchTasks">
+                <i class="material-icons text-white">upload</i>
+            </button>
+            <button class="btn btn-danger" @click="deleteAllTasks" type="button">
+                <i class="material-icons text-white">delete</i>
+            </button>
+        </div>
     </form>
 </template>
 
@@ -42,8 +52,17 @@ export default {
                 }
             }
         };
-
-        return { handleSubmit, newTask };
+        const fetchTasks = async () => {
+            await taskStore.fetchTasks();
+        };
+        const deleteAllTasks = async () => {
+            try {
+                await taskStore.deleteAllTasks();  // Call deleteAllTasks from store
+            } catch (error) {
+                console.error("Error deleting tasks: ", error);
+            }
+        };
+        return { handleSubmit,fetchTasks,deleteAllTasks, newTask };
     },
 };
 </script>

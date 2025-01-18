@@ -23,7 +23,7 @@
      </div>
 
      <div class="task-list" v-if="filter === 'favs'">
-      <p>Fav Tasks: {{ TaskStore.isFavCounter }}</p>
+      <p class="badge rounded-pill badge-danger">Fav tasks '<i class="fa fa-heart" style="color:red"></i>': {{ TaskStore.isFavCounter }}</p>
       <div v-for="task in TaskStore.favs">
         <TaskDetails :task="task" />
       </div>
@@ -34,10 +34,13 @@
 import TaskDetails from "../components/TaskDetails.vue";
 import TaskForm from "../components/TaskForm.vue";
 import { useTaskStore } from '../stores/TaskStore';
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 // Use the TaskStore Pinia store
 const TaskStore = useTaskStore();
 const filter = ref('all');
+onMounted(async () => {
+  await taskStore.fetchTasks();
+});
 
 </script>

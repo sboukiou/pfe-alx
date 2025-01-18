@@ -13,7 +13,7 @@
             </div>
             <div class="overflow-hidden" style="max-height: 30vh;">
               <div class="container px-5">
-                <img src="" class="img-fluid border rounded-3 shadow-lg mb-4" alt="App screenshot showing task management features" width="700" height="500" loading="lazy">
+                <img src="../../public/img/todoscreenshot.png" class="img-fluid border rounded-3 shadow-lg mb-4" alt="App screenshot showing task management features" width="700" height="500" loading="lazy">
               </div>
             </div>
         </div>
