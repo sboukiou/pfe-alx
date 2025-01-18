@@ -4,7 +4,7 @@ import axios from 'axios';  // Import axios to make API calls
 export const useTaskStore = defineStore('TaskStore', {
     state: () => ({
         tasks: [],
-        name: 'Yassine'
+        name: 'User'
     }),
     getters: {
         favs() {

@@ -2,7 +2,7 @@
       <main>
     <header>
       <img src="../../public/img/logo.png" alt="pinia logo">
-      <h1>{{TaskStore.name}} Tasks</h1>
+      <h1><span class="text-danger">{{TaskStore.name}}</span>'s Tasks</h1>
     </header>
     <!-- new task form -->
      <div class="new-task-form">
@@ -11,12 +11,13 @@
     <!-- filter -->
      <nav class="filter">
         <button @click="filter = 'all'">All tasks</button>
-        <button @click="filter = 'favs'">Fav tasks</button>
+        <button @click="filter = 'favs'">Fav tasks '<i class="fa fa-heart" style="color:red"></i>'</button>
      </nav>
     <!-- tasks list -->
      <div class="task-list" v-if="filter === 'all'">
-      <p>All tasks: {{ TaskStore.totalCounter }}</p>
-      <div v-for="task in TaskStore.tasks">
+      <p class="badge rounded-pill badge-info">All tasks: {{ TaskStore.totalCounter }}</p>
+      <h1 v-if="!TaskStore.tasks.length" class="text-center m-5">your day is free😄!</h1>
+      <div v-else v-for="task in TaskStore.tasks">
         <TaskDetails :task="task" />
       </div>
      </div>
