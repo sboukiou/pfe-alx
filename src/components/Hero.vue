@@ -8,8 +8,7 @@
                 Whether it's daily chores, work projects, or personal goals, we've got you covered with features designed to simplify your life.
               </p>
               <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Get Started</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Learn More</button>
+                <router-link to="/tasks" type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Get Started</router-link>
               </div>
             </div>
             <div class="overflow-hidden" style="max-height: 30vh;">

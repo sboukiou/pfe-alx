@@ -1,36 +1,19 @@
 <template>
-    <!-- navbar -->
-    <nav class="navbar navbar-expand bg-body-tertiary">
-            <div class="container-fluid">
-                <div class="">
-                    <a class="navbar-brand">
-                        <h4 class="title-nav">Todo <span class="title-span">List</span></h4>
-                    </a>
-                    
-                </div>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                    <ul class="nav ">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                      </ul>
-                </div>
-                <div>
-                    <button class="btn btn-primary" type="button">Try it Now!!</button>
-                </div>
-                <div>
-                </div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between w-100">
+            <!-- Navbar Brand -->
+            <a class="navbar-brand" href="#">
+                <h4 class="title-nav">Todo <span class="title-span">List</span></h4>
+            </a>
+
+            <!-- Try it Now Button -->
+            <div class="ms-auto">
+                <router-link to="/tasks" class="btn btn-primary" type="button">Try it Now!!</router-link>
             </div>
-    </nav>
+        </div>
+    </div>
+</nav>
 </template>
 <script>
 </script>
