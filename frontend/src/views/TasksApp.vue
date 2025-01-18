@@ -40,7 +40,7 @@ import { ref, onMounted } from "vue";
 const TaskStore = useTaskStore();
 const filter = ref('all');
 onMounted(async () => {
-  await taskStore.fetchTasks();
+  await TaskStore.fetchTasks();
 });
 
 </script>

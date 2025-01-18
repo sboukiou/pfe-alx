@@ -6,6 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
+  publicPath:'/pfe-alx',
   base:'/pfe-alx/',
   plugins: [
     vue(),

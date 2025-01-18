@@ -33,6 +33,7 @@ export const useTaskStore = defineStore('TaskStore', {
           try {
             const response = await axios.post('http://localhost:3000/tasks', task);
             this.tasks.push(response.data);
+            console.log('added')
           } catch (error) {
             console.error('Error adding task:', error);
           }

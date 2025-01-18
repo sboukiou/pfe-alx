@@ -5,7 +5,7 @@
             <button class="btn btn-primary" type="submit" @click="add">
                 <i class="material-icons text-white">add</i>
             </button>
-            <button class="btn btn-primary" type="submit" @click="fetchTasks">
+            <button class="btn btn-primary" type="button" @click="fetchTasks">
                 <i class="material-icons text-white">upload</i>
             </button>
             <button class="btn btn-danger" @click="deleteAllTasks" type="button">
@@ -32,19 +32,16 @@ export default {
                     const response = await axios.post("http://localhost:3000/tasks", {
                         title: newTask.value,
                         isFav: false,
-                        date: new Date().toISOString()
+                        date: new Date().toISOString()  // Example date, adjust according to your schema
                     });
-
                     // If the task is successfully added, update your store
                     taskStore.addTask({
                         title: newTask.value,
                         isFav: false,
-                        id: response.data.id,
+                        id: response.data.id,  // Use the ID from the server's response
                     });
-
                     // Fetch all tasks again to ensure the task list is up-to-date
                     await taskStore.fetchTasks();
-
                     // Clear the input field after submission
                     newTask.value = '';
                 } catch (error) {

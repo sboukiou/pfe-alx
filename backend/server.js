@@ -49,18 +49,26 @@ app.get('/tasks/:id', async (req, res) => {
 
 // Create a new task
 app.post('/tasks', async (req, res) => {
-    const { title, isFav, date } = req.body;
+    const { description, statu, date } = req.body;
+
+    // Validate that all required fields are present
+    if (!description || !statu || !date) {
+        return res.status(400).json({ message: 'All fields (description, statu, date) are required.' });
+    }
+
     try {
+        // Create the new task
         const newTask = await Task.create({
-            description: title,
-            statu: isFav ? 1 : 0,
+            description,
+            statu,
             date
         });
 
-        const tasks = await Task.findAll();
-        res.status(201).json(tasks);
+        // Return the newly created task with id
+        res.status(201).json(newTask);
     } catch (err) {
-        res.status(400).json({ message: 'Error creating task', error: err });
+        console.error("Error creating task:", err);
+        res.status(500).json({ message: 'Error creating task', error: err.message });
     }
 });
 
@@ -84,7 +92,7 @@ app.delete('/tasks/:id', async (req, res) => {
     const task = await Task.findByPk(req.params.id);
     if (task) {
         await task.destroy();
-        res.status(204).send();
+        res.status(204).send();  // Respond with no content on successful deletion
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
@@ -92,8 +100,8 @@ app.delete('/tasks/:id', async (req, res) => {
 // Delete all tasks from tasks.db
 app.delete('/tasks', async (req, res) => {
     try {
-        const result = await Task.destroy({ where: {} });
-        res.status(204).send();
+        const result = await Task.destroy({ where: {} });  // Deletes all tasks
+        res.status(204).send();  // Send no content if successful
     } catch (error) {
         console.error("Error deleting all tasks:", error);
         res.status(500).json({ message: "Error deleting tasks" });
