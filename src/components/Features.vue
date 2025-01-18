@@ -1,7 +1,7 @@
 <template>
     <!-- Features Section -->
     <div class="container my-5">
-    <h2 class="text-center fw-bold mb-5">Key Features</h2>
+    <h2 class="text-center fw-bold mb-5">Features</h2>
     <div class="row g-4 text-center">
         <!-- Feature 1 -->
         <div class="col-md-3">

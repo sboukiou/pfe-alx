@@ -9,8 +9,7 @@
                 <!-- Team Member 1 -->
                 <div class="col-md-5" v-for="(member,index) in teamMembers">
                   <div class="feature-card border-0 shadow-sm text-center">
-                    <img :src="member.image" class="card-img-top rounded-circle p-3 mx-auto" alt="Team Member">
-                    <div class="card-body">
+                    <img :src="member.image" class="img-fluid mb-3" alt="Profile Picture" style="width: 100px; height: 100px;"/>                    <div class="card-body">
                       <h5 class="card-title fw-bold">{{member.name}}</h5>
                       <p class="text-muted">{{member.role}}</p>
                       <div class="d-flex justify-content-center">
@@ -44,16 +43,16 @@ export default {
       {
         name: "Yassine Boussif",
         role: "backend software engineer student",
-        image: "https://via.placeholder.com/300",
-        linkedin: "https://linkedin.com/in/yassineboussif",
+        image: "https://media.licdn.com/dms/image/v2/D4E03AQGmtlLyRtMkMQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1723907400142?e=1742428800&v=beta&t=KaQLZmPdILhImC3pIEihMVHOXcccsPb4GwNHsEuttdc",
+        linkedin: "https://www.linkedin.com/in/yassine-boussif-6789a1293/",
         github: "https://github.com/yassineedev",
       },
       {
         name: "Said Boukioud",
         role: "backend software engineer student",
-        image: "https://via.placeholder.com/300",
-        linkedin: "https://linkedin.com/in/saidboukioud",
-        github: "https://github.com/saidboukioud",
+        image: "https://media.licdn.com/dms/image/v2/D4E03AQF39Mp33CyvIg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1718275138583?e=1742428800&v=beta&t=HVUxl0pssNdl8GejO2AMcJX3qe3jJBAB1ZwSddlqLfM",
+        linkedin: "https://www.linkedin.com/in/bouk-said-283b06283/",
+        github: "https://github.com/sboukiou",
       },
     ]);
 
