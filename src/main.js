@@ -5,8 +5,8 @@ import { createPinia } from 'pinia';
 
 // Import global styles and dependencies
 import './assets/main.css';
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // Create the Vue app instance
 const app = createApp(App);
