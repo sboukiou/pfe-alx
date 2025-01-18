@@ -16,7 +16,7 @@
     <!-- tasks list -->
      <div class="task-list" v-if="filter === 'all'">
       <p class="badge rounded-pill badge-info">All tasks: {{ TaskStore.totalCounter }}</p>
-      <h1 v-if="!TaskStore.tasks.length" class="text-center m-5">your day is free😄!</h1>
+      <h1 v-if="!TaskStore.tasks.length" class="text-center m-5">Today is all yours! 😄</h1>
       <div v-else v-for="task in TaskStore.tasks">
         <TaskDetails :task="task" />
       </div>
