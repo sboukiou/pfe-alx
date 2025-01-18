@@ -91,7 +91,16 @@ app.delete('/tasks/:id', async (req, res) => {
         res.status(404).json({ message: 'Task not found' });
     }
 });
-
+// Delete all tasks from tasks.db
+app.delete('/tasks', async (req, res) => {
+    try {
+        const result = await Task.destroy({ where: {} });  // Deletes all tasks
+        res.status(204).send();  // Send no content if successful
+    } catch (error) {
+        console.error("Error deleting all tasks:", error);
+        res.status(500).json({ message: "Error deleting tasks" });
+    }
+});
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
