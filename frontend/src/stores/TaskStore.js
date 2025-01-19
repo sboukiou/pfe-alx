@@ -48,19 +48,40 @@ export const useTaskStore = defineStore('TaskStore', {
             console.error('Error deleting task:', error);
           }
         },
-    
-        // Toggle favorite status of a task
-        async toggleFav(id) {
-          const task = this.tasks.find((task) => task.id === id);
-          if (task) {
-            task.isFav = !task.isFav;
-            try {
-              await axios.put(`http://localhost:3000/tasks/${id}`, task);
-            } catch (error) {
-              console.error('Error updating favorite status:', error);
-            }
+        // update task
+        async updateTask(updatedTask) {
+          try {
+              const response = await fetch(`/tasks/${updatedTask.id}`, {
+                  method: 'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                      title: updatedTask.title,
+                      isFav: updatedTask.isFav,
+                      date: updatedTask.date,
+                  }),
+              });
+
+              if (!response.ok) {
+                  throw new Error('Failed to update task');
+              }
+
+              const updated = await response.json();
+              // Update the local state
+              this.tasks = this.tasks.map((task) =>
+                  task.id === updated.id ? updated : task
+              );
+          } catch (error) {
+              console.error('Error updating task:', error);
           }
-        },
+      },
+        // Toggle favorite status of a task
+        toggleFav(id) {
+          const task = this.tasks.find((t) => t.id === id);
+          if (task) {
+              task.isFav = !task.isFav; // Toggle favorite status locally
+          }
+      },
+        
     
         // Delete all tasks from the store and backend
         async deleteAllTasks() {

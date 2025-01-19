@@ -28,7 +28,6 @@ sequelize.sync().then(() => {
 
 app.get('/', (req, res) => {
     res.send('Welcome to the homepage!');
-    res.send('t!');
 });
 
 // Get all tasks
@@ -49,26 +48,18 @@ app.get('/tasks/:id', async (req, res) => {
 
 // Create a new task
 app.post('/tasks', async (req, res) => {
-    const { description, statu, date } = req.body;
-
-    // Validate that all required fields are present
-    if (!description || !statu || !date) {
-        return res.status(400).json({ message: 'All fields (description, statu, date) are required.' });
-    }
-
+    const { title, isFav, date } = req.body;
     try {
-        // Create the new task
         const newTask = await Task.create({
-            description,
-            statu,
+            description: title,
+            statu: isFav ? 1 : 0,
             date
         });
 
-        // Return the newly created task with id
-        res.status(201).json(newTask);
+        const tasks = await Task.findAll();
+        res.status(201).json(tasks);
     } catch (err) {
-        console.error("Error creating task:", err);
-        res.status(500).json({ message: 'Error creating task', error: err.message });
+        res.status(400).json({ message: 'Error creating task', error: err });
     }
 });
 
@@ -86,13 +77,42 @@ app.put('/tasks/:id', async (req, res) => {
         res.status(404).json({ message: 'Task not found' });
     }
 });
+// update tasks isFav or not
+app.put('/tasks/:id', async (req, res) => {
+    const { title, isFav, date } = req.body;
+
+    // Validate the request data
+    if (!title || typeof title !== 'string') {
+        return res.status(400).json({ message: 'Invalid title' });
+    }
+    if (!date || isNaN(new Date(date).getTime())) {
+        return res.status(400).json({ message: 'Invalid date' });
+    }
+
+    try {
+        const task = await Task.findByPk(req.params.id);
+        if (task) {
+            task.description = title;
+            task.statu = isFav ? 1 : 0;
+            task.date = date;
+            await task.save();
+            res.json(task);
+        } else {
+            res.status(404).json({ message: 'Task not found' });
+        }
+    } catch (error) {
+        console.error('Error updating task:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 
 // Delete a task
 app.delete('/tasks/:id', async (req, res) => {
     const task = await Task.findByPk(req.params.id);
     if (task) {
         await task.destroy();
-        res.status(204).send();  // Respond with no content on successful deletion
+        res.status(204).send();
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
@@ -100,8 +120,8 @@ app.delete('/tasks/:id', async (req, res) => {
 // Delete all tasks from tasks.db
 app.delete('/tasks', async (req, res) => {
     try {
-        const result = await Task.destroy({ where: {} });  // Deletes all tasks
-        res.status(204).send();  // Send no content if successful
+        const result = await Task.destroy({ where: {} });
+        res.status(204).send();
     } catch (error) {
         console.error("Error deleting all tasks:", error);
         res.status(500).json({ message: "Error deleting tasks" });
