@@ -182,3 +182,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **SQLite**: A C-language library that implements a small, fast, self-contained, high-reliability, full-featured SQL database engine.
 - **Bootstrap**: A popular CSS framework for building responsive websites.
 - **Material Bootstrap**: Material design components for Bootstrap.
+# For more about the project and it other sides
+## Checks this link
+    https://docs.google.com/presentation/d/1sDcquIViH10GxWeF8aWQwSptXuw35EPqUrV_0yZt-3A/edit#slide=id.p
