@@ -74,11 +74,10 @@ export const useTaskStore = defineStore('TaskStore', {
               console.error('Error updating task:', error);
           }
       },
-        // Toggle favorite status of a task
         toggleFav(id) {
           const task = this.tasks.find((t) => t.id === id);
           if (task) {
-              task.isFav = !task.isFav; // Toggle favorite status locally
+              task.isFav = !task.isFav;
           }
       },
         
