@@ -10,7 +10,7 @@
      </div>
     <!-- filter -->
      <nav class="filter">
-        <button class='shadow-lg bg-info-subtle' @click="filter = 'all'">All tasks</button>
+        <button class='shadow-lg bg-primary-subtle' @click="filter = 'all'">All tasks</button>
 			<!--   <button class='shadow-lg bg-info-subtle' @click="filter = 'favs'">Fav tasks </button> -->
      </nav>
     <!-- tasks list -->
