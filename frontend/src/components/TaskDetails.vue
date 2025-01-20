@@ -1,5 +1,5 @@
 <template>
-    <div class="task border border-primary bg-info-subtle">
+    <div class="task border border-primary bg-info-subtle shadow-lg">
         <h3> {{ task.description }} </h3>
         <div class="icons">
             <i class="material-icons" @click="taskStore.deleteTask(task.id)">delete</i>
