@@ -10,8 +10,8 @@
      </div>
     <!-- filter -->
      <nav class="filter">
-        <button @click="filter = 'all'">All tasks</button>
-        <button @click="filter = 'favs'">Fav tasks '<i class="fa fa-heart" style="color:red"></i>'</button>
+        <button class='shadow-lg bg-info-subtle' @click="filter = 'all'">All tasks</button>
+			<!--   <button class='shadow-lg bg-info-subtle' @click="filter = 'favs'">Fav tasks </button> -->
      </nav>
     <!-- tasks list -->
      <div class="task-list" v-if="filter === 'all'">
