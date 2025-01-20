@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+body {
+  font-family: "Fira Mono", monospace !important;
+  font-weight: 400;
+  font-style: normal; 
+  color: #444;
+  margin: 0;
+  background-color: #F2F2F2 !important;
+}
+
+/* header */
+header {
+  text-align: center;
+  background: #e7e7e7;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header img {
+  max-width: 60px;
+  transform: rotate(10deg);
+}
+header h1 {
+  margin: 0;
+  font-size: 2em;
+  padding-top: 25px;
+  margin-left: 15px;
+  color: #3B71CA;
+  transform: rotate(2deg);
+}
+
+/* task list */
+.task-list {
+  max-width: 640px;
+  margin: 20px auto;
+}
+.task {
+  padding: 6px 20px;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task h3, .task .icons {
+  display: inline-block;
+}
+.task .icons {
+  text-align: right;
+}
+.task i {
+  font-size: 1.4em;
+  margin-left: 6px;
+  cursor: pointer;
+  color: #bbb;
+}
+.task i.active {
+  color: #ff005d;
+}
+
+/* filter nav */
+.filter {
+  width: 640px;
+  margin: 10px auto;
+  text-align: right;
+}
+.filter button {
+  display: inline-block;
+  margin-left: 10px;
+  background: #fff;
+  border: 2px solid #555;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-size: 1em;
+}
+
+/* new task form */
+.new-task-form {
+  background: #e7e7e7;
+  padding: 20px 0;
+}
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 10px;
+}
+form button {
+  border: 0;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+}
+form input {
+  border: 0;
+  padding: 10px;
+  border-radius: 6px;
+  color: #555;
+  font-size: 1em;
+}
+
+/* loading state */
+.loading {
+  max-width: 640px;
+  border: 1px solid #ffd859;
+  background: #ffe9a0;
+  color: #3a3a3a;
+  padding: 5px 0;
+  text-align: center;
+  margin: 30px auto;
+}
+
+
+.title-nav{
+font-family: 'Pacifico', cursive !important;
+font-weight: bold;
+font-size: 30px;
+}
+.title-span{
+  color: red;
+}
+.badge-waiting{
+  background-color: #DDB78A;
+  color: #65385a !important;
+}
+.respns-table{
+  max-height: 360px;
+}
+.task-list {
+  max-width: 640px;
+  margin: 20px auto;
+}
+.task {
+  padding: 6px 20px;
+  background: #fff;
+  margin-top: 20px;
+  border-radius: 4px;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task h3, .task .icons {
+  display: inline-block;
+}
+.task .icons {
+  text-align: right;
+}
+.task i {
+  font-size: 1.4em;
+  margin-left: 6px;
+  cursor: pointer;
+  color: #bbb;
+}
+.task i.active {
+  color: #ff005d;
+}
+.nav-link{
+color: black !important;
+}
+.background{
+background-image: url(/img/dot-grid.webp);
+}
+.img{
+width: 100px;
+}
+.bg-color{
+background-color: #F2F2F2;
+}
+.text-decoration-underline {
+color:#ff005d;
+
+}
+.border-2{
+border-radius: 10% 30%;
+border-width: 2px !important;
+}
+.dashed_line{
+text-decoration: underline;
+text-decoration-thickness: 0.4rem;
+position: relative;
+text-decoration-color: #386BC0;
+text-decoration-style: solid ;
+}
+
+
+/* Feature Card */
+.feature-card {
+background: #fff;
+border-radius: 15px;
+padding: 30px 20px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s, box-shadow 0.3s;
+height: 100%;
+}
+
+.feature-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon Section */
+.icon-section {
+width: 80px;
+height: 80px;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: #386BC0;
+border-radius: 50%;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+color: #fff;
+font-size: 2rem;
+}
+
+/* Typography */
+h2 {
+font-family: 'Poppins', sans-serif;
+font-size: 2.5rem;
+color: #333;
+}
+
+h3 {
+font-family: 'Poppins', sans-serif;
+font-weight: 600;
+color: #444;
+}
+
+p {
+color: #666;
+font-size: 0.95rem;
+line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+.icon-section {
+  width: 70px;
+  height: 70px;
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+}

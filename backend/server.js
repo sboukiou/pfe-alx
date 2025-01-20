@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const { sequelize, Task } = require('./db'); // Import the database setup
-
+const { sequelize, Task } = require('./db');
 const app = express();
 const PORT = 3000;
 const helmet = require('helmet');
@@ -29,7 +28,6 @@ sequelize.sync().then(() => {
 
 app.get('/', (req, res) => {
     res.send('Welcome to the homepage!');
-    res.send('t!');
 });
 
 // Get all tasks
@@ -50,17 +48,16 @@ app.get('/tasks/:id', async (req, res) => {
 
 // Create a new task
 app.post('/tasks', async (req, res) => {
-    const { title, isFav, date } = req.body; // title -> description, isFav -> statu
+    const { title, isFav, date } = req.body;
     try {
         const newTask = await Task.create({
-            description: title, // Mapping frontend 'title' to 'description'
-            statu: isFav ? 1 : 0, // Mapping 'isFav' to 'statu', 1 for true, 0 for false
+            description: title,
+            statu: isFav ? 1 : 0,
             date
         });
 
-        // Fetch all tasks after creating the new one
         const tasks = await Task.findAll();
-        res.status(201).json(tasks);  // Return the updated list of tasks
+        res.status(201).json(tasks);
     } catch (err) {
         res.status(400).json({ message: 'Error creating task', error: err });
     }
@@ -68,11 +65,11 @@ app.post('/tasks', async (req, res) => {
 
 // Update a task
 app.put('/tasks/:id', async (req, res) => {
-    const { title, isFav, date } = req.body; // title -> description, isFav -> statu
+    const { title, isFav, date } = req.body; 
     const task = await Task.findByPk(req.params.id);
     if (task) {
-        task.description = title; // Mapping 'title' to 'description'
-        task.statu = isFav ? 1 : 0; // Mapping 'isFav' to 'statu'
+        task.description = title;
+        task.statu = isFav ? 1 : 0;
         task.date = date;
         await task.save();
         res.json(task);
@@ -80,18 +77,56 @@ app.put('/tasks/:id', async (req, res) => {
         res.status(404).json({ message: 'Task not found' });
     }
 });
+// update tasks isFav or not
+app.put('/tasks/:id', async (req, res) => {
+    const { title, isFav, date } = req.body;
+
+    // Validate the request data
+    if (!title || typeof title !== 'string') {
+        return res.status(400).json({ message: 'Invalid title' });
+    }
+    if (!date || isNaN(new Date(date).getTime())) {
+        return res.status(400).json({ message: 'Invalid date' });
+    }
+
+    try {
+        const task = await Task.findByPk(req.params.id);
+        if (task) {
+            task.description = title;
+            task.statu = isFav ? 1 : 0;
+            task.date = date;
+            await task.save();
+            res.json(task);
+        } else {
+            res.status(404).json({ message: 'Task not found' });
+        }
+    } catch (error) {
+        console.error('Error updating task:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 
 // Delete a task
 app.delete('/tasks/:id', async (req, res) => {
     const task = await Task.findByPk(req.params.id);
     if (task) {
-        await task.destroy();  // Delete the task from the database
-        res.status(204).send();  // Respond with no content on successful deletion
+        await task.destroy();
+        res.status(204).send();
     } else {
         res.status(404).json({ message: 'Task not found' });
     }
 });
-
+// Delete all tasks from tasks.db
+app.delete('/tasks', async (req, res) => {
+    try {
+        const result = await Task.destroy({ where: {} });
+        res.status(204).send();
+    } catch (error) {
+        console.error("Error deleting all tasks:", error);
+        res.status(500).json({ message: "Error deleting tasks" });
+    }
+});
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
