@@ -1,6 +1,0 @@
-<Template>
-</Template>
-
-
-<script>
-</script>
