@@ -15,8 +15,7 @@ This task management application is my final graduation project, developed using
 5. [API Endpoints](#api-endpoints)
 6. [Usage](#usage)
 7. [Contributing](#contributing)
-8. [License](#license)
-9. [Creators](#creators)
+8. [Creators](#creators)
 
 ---
 
@@ -74,7 +73,7 @@ pfe-alx/
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/your-username/pfe-alx.git
+    git clone https://github.com/sboukiou/pfe-alx.git
     cd pfe-alx/backend
     ```
 
@@ -158,12 +157,6 @@ The backend exposes the following API endpoints for interacting with tasks:
 ## Contributing
 
 Feel free to fork the repository and submit issues or pull requests to improve the project. I welcome contributions from other developers to help enhance the functionality, add new features, or fix bugs.
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
